@@ -14,15 +14,16 @@ import Verify from './pages/Verify/Verify'
 const App = () => {
 
   const [showLogin,setShowLogin] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
   return (
     <>
     <ToastContainer/>
     {showLogin?<LoginPopup setShowLogin={setShowLogin}/>:<></>}
       <div className='app'>
-        <Navbar setShowLogin={setShowLogin}/>
+        <Navbar setShowLogin={setShowLogin} setSearchText={setSearchText}/>
         <Routes>
-          <Route path='/' element={<Home />}/>
+          <Route path='/' element={<Home searchText={searchText}/>}/>
           <Route path='/cart' element={<Cart />}/>
           <Route path='/order' element={<PlaceOrder />}/>
           <Route path='/myorders' element={<MyOrders />}/>

@@ -5,7 +5,7 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
 
-    const url = "https://tomato-food-del-backend-p1ni.onrender.com"
+    const url = "http://localhost:4000"
     const [food_list, setFoodList] = useState([]);
     const [cartItems, setCartItems] = useState({});
     const [token, setToken] = useState("")
@@ -30,16 +30,16 @@ const StoreContextProvider = (props) => {
         }
     }
 
-    const getTotalCartAmount = () => {
-        let totalAmount = 0;
-        for (const item in cartItems) {
-            if (cartItems[item] > 0) {
-                let itemInfo = food_list.find((product) => product._id === item);
-                totalAmount += itemInfo.price * cartItems[item];
-            }
-        }
-        return totalAmount;
+const getTotalCartAmount = () => {
+  let total = 0;
+  for (const itemId in cartItems) {
+    const foodItem = food_list.find(item => item._id === itemId);
+    if (foodItem) {
+      total += foodItem.price * cartItems[itemId];
     }
+  }
+  return total;
+};
 
     const fetchFoodList = async () => {
         const response = await axios.get(url + "/api/food/list");

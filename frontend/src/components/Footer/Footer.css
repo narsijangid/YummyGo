@@ -20,6 +20,9 @@
     align-items: start;
     gap: 20px;
 }
+.footer-content-left h1{
+color: rgb(255, 77, 0);
+}
 .footer-content-left ul li, .footer-content-center ul li, .footer-content-right ul li{
     margin-bottom: 10px;
     list-style: none;

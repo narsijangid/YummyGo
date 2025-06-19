@@ -4,9 +4,10 @@ import { assets } from '../../assets/assets'
 import { Link, useNavigate } from 'react-router-dom'
 import { StoreContext } from '../../Context/StoreContext'
 
-const Navbar = ({ setShowLogin }) => {
+const Navbar = ({ setShowLogin, setSearchText }) => {
 
   const [menu, setMenu] = useState("home");
+  const [search, setSearch] = useState("");
   const { getTotalCartAmount, token ,setToken } = useContext(StoreContext);
   const navigate = useNavigate();
 
@@ -14,6 +15,12 @@ const Navbar = ({ setShowLogin }) => {
     localStorage.removeItem("token");
     setToken("");
     navigate('/')
+  }
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (setSearchText) setSearchText(search);
+    navigate('/');
   }
 
   return (
@@ -26,7 +33,16 @@ const Navbar = ({ setShowLogin }) => {
         <a href='#footer' onClick={() => setMenu("contact")} className={`${menu === "contact" ? "active" : ""}`}>contact us</a>
       </ul>
       <div className="navbar-right">
-        <img src={assets.search_icon} alt="" />
+        <form onSubmit={handleSearch} style={{display:'flex',alignItems:'center',gap:'8px'}}>
+          <input
+            type="text"
+            placeholder="Search food..."
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            style={{padding:'6px 10px',borderRadius:'4px',border:'1px solid #ccc'}}
+          />
+          <button type="submit" style={{padding:'6px 16px',borderRadius:'4px',border:'none',background:'#FF4C24',color:'#fff',cursor:'pointer'}}>Search</button>
+        </form>
         <Link to='/cart' className='navbar-search-icon'>
           <img src={assets.basket_icon} alt="" />
           <div className={getTotalCartAmount() > 0 ? "dot" : ""}></div>
