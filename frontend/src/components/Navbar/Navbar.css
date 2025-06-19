@@ -118,6 +118,8 @@ position: relative;
     }
 }
 
+
+
 @media (max-width:900px) {
     .navbar .logo {
         width: 120px;
@@ -146,4 +148,21 @@ position: relative;
     .navbar-menu {
         display: none;
     }
+}
+
+
+
+
+/* By default, show search bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Hide search bar on screens <= 768px (mobile) */
+@media screen and (max-width: 768px) {
+  .search-bar {
+    display: none;
+  }
 }

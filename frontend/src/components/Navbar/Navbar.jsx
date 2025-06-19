@@ -33,7 +33,7 @@ const Navbar = ({ setShowLogin, setSearchText }) => {
         <a href='#footer' onClick={() => setMenu("contact")} className={`${menu === "contact" ? "active" : ""}`}>contact us</a>
       </ul>
       <div className="navbar-right">
-        <form onSubmit={handleSearch} style={{display:'flex',alignItems:'center',gap:'8px'}}>
+        <form onSubmit={handleSearch}   className="search-bar" style={{display:'flex',alignItems:'center',gap:'8px'}}>
           <input
             type="text"
             placeholder="Search food..."
